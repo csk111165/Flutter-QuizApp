@@ -5,18 +5,17 @@ class StartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return  Center(
       child: Column(
         // it will allow to take the min size, ie, size of the image itself
         mainAxisSize: MainAxisSize.min,
         children: [
-          Opacity(
-            opacity: 0.5,
-            child: Image.asset(
-              'assets/images/quiz-logo.png',
-              width: 300,
+          Image.asset(
+            'assets/images/quiz-logo.png', 
+             width: 300,
+             color: Colors.deepOrange,
+
             ),
-          ),
           const SizedBox(height: 80),
           const Text(
             'Learn Flutter the fun way!',
@@ -24,18 +23,18 @@ class StartScreen extends StatelessWidget {
               color: Color.fromARGB(255, 227, 207, 231),
               fontSize: 20,
             ),
-          ),
+            ),
           const SizedBox(height: 30),
           OutlinedButton.icon(
             icon: const Icon(Icons.arrow_right_alt),
-            onPressed: () {},
+            onPressed: () {}, 
             style: OutlinedButton.styleFrom(
               foregroundColor: Colors.white,
             ),
             label: const Text(
               'Start Quiz',
+              ),
             ),
-          ),
         ],
       ),
     );
