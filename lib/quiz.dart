@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/question_screen.dart';
 import 'package:quiz_app/start_screen.dart';
+import 'package:quiz_app/data/questions.dart';
+
 
 
 class Quiz extends StatefulWidget {
@@ -13,7 +15,7 @@ class Quiz extends StatefulWidget {
 class _QuizState extends State<Quiz> {
 
   var activeScreen = 'start-screen';
-  final List<String>  selectedAnswers = [];
+  List<String>  selectedAnswers = [];
 
   void switchScreen() {
     setState(() {
@@ -25,6 +27,16 @@ class _QuizState extends State<Quiz> {
   // for storing the answer responses from user
   void chooseAnswers(String answer) {
     selectedAnswers.add(answer);
+
+    if(selectedAnswers.length == questions.length) {
+      setState(() {
+        // re-initialize the list since for the next iteration, it will again be filled with the results and it will 
+        // cause issue when the next quiz is launced
+        selectedAnswers = [];
+
+        activeScreen = 'start-screen';
+      });
+    }
   }
 
   @override
