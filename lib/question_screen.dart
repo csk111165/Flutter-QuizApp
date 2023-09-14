@@ -31,6 +31,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
               ),
               ),
             const SizedBox(height: 30),
+            // dynamically creating the AnswerButton using map
             ...currentQuestion.answers.map((answer) {
               return AnswerButton(answerText: answer, onTap: () {});
             })
