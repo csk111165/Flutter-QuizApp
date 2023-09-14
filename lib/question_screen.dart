@@ -5,8 +5,9 @@ import 'package:quiz_app/data/questions.dart';
 
 
 class QuestionScreen extends StatefulWidget {
-  const QuestionScreen({super.key});
+  const QuestionScreen({super.key, required this.onSelectAnswer});
 
+  final void Function(String answer) onSelectAnswer;
   @override
   State<QuestionScreen> createState() => _QuestionScreenState();
 }
@@ -20,8 +21,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
     final currentQuestion = questions[currentQuestionIndex];
 
-    void answerQuestion() {
-
+    void answerQuestion(String answer) {
+      widget.onSelectAnswer(answer);
       setState(() {
         currentQuestionIndex++;
       });
@@ -48,7 +49,12 @@ class _QuestionScreenState extends State<QuestionScreen> {
             const SizedBox(height: 30),
             // dynamically creating the AnswerButton using map and now adding the shuffle behaviour to the list
             ...currentQuestion.getShuffledAnswers().map((answer) {
-              return AnswerButton(answerText: answer, onTap: answerQuestion);
+              return AnswerButton(
+                answerText: answer, 
+                onTap: () {
+                  answerQuestion(answer);
+                }
+                );
             })
             // ... dot is required because it will allow to merget the list into column list, otherwise Column will complain as it will encounter a new separate list, ... will help to merget the all the button list with the widget list as one 
           ],
