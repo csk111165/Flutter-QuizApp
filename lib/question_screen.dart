@@ -12,10 +12,11 @@ class QuestionScreen extends StatefulWidget {
 
 class _QuestionScreenState extends State<QuestionScreen> {
 
-  final currentQuestion = questions[0];
-
   @override
   Widget build(BuildContext context) {
+
+    final currentQuestion = questions[0];
+
     return SizedBox(
       width: double.infinity,
       child: Container(
