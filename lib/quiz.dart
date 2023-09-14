@@ -33,7 +33,7 @@ class _QuizState extends State<Quiz> {
       setState(() {
         // re-initialize the list since for the next iteration, it will again be filled with the results and it will 
         // cause issue when the next quiz is launced
-        selectedAnswers = [];
+        // selectedAnswers = [];
 
         activeScreen = 'results-screen';
       });
@@ -51,7 +51,7 @@ class _QuizState extends State<Quiz> {
 
     // condition for displaying the results screen 
     if (activeScreen == 'results-screen') {
-      screenWidget = const ResultsScreen();
+      screenWidget =  ResultsScreen(choosenAnswers: selectedAnswers);
     }
 
     return  MaterialApp(
