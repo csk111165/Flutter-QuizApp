@@ -25,6 +25,15 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    final summaryData = getSummaryData();
+    final numTotalQuestions = questions.length; //  to show on the results page
+    final numCorrectQuestion = summaryData.where((data) {
+      return (data['user_answer'] == data['correct_answer']);
+    }).length; // since where returns list, but here we need the count , so length property on list will give desired count
+
+
+
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -32,11 +41,11 @@ class ResultsScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children:  [
-            const Text('You answered X out of Y questions correctly!'),
+            Text('You answered $numCorrectQuestion out of $numTotalQuestions questions correctly!'),
             const SizedBox(
               height: 30,
             ),
-            QuestionSummary(summaryData: getSummaryData()),
+            QuestionSummary(summaryData: summaryData),
             const SizedBox(
               height: 30,
             ),
